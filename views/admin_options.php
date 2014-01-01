@@ -3,9 +3,9 @@
 
     <h2>Environments</h2>
 
-    <span><?php echo $this->version; ?></span>
-
     <p>This plugin is made to easily setup domains and associate them with environments such as Local, Staging, and Production.</p>
+
+    <p><strong>Version: <?php echo $this->version; ?></strong></p>
 
     <p>View this plugin on <a href="https://github.com/pixelbacon/wp-environment" target="_blank">GitHub</a>.</p>
 
@@ -25,7 +25,7 @@
 
         <table class="form-table">
             <tbody>
-                <h3>Domains</h3>
+                <h3>Domains per Environment</h3>
 
                 <tr valign="top">
                     <th scope="row">
@@ -73,9 +73,9 @@
     </p>
 
     <ul>
-        <li>WPE_ENV_DEV = 'dev'</li>
-        <li>WPE_ENV_STAGING = 'staging'</li>
-        <li>WPE_ENV_PROD = 'production'</li>
+        <li>WPE_ENV_DEV</li>
+        <li>WPE_ENV_STAGING</li>
+        <li>WPE_ENV_PROD</li>
         <li>WPE_ENV = WPE_ENV_DEV | WPE_ENV_STAGING | WPE_ENV_PROD</li>
     </ul>
 
