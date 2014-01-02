@@ -106,6 +106,8 @@ class WP_Environments
             define('WPE_ENV', WPE_ENV_PROD);
             return;
         endif;
+
+        define('WPE_ENV', WPE_ENV_LOCAL);
     }
 
     /**

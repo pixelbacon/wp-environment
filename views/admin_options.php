@@ -1,15 +1,6 @@
 <div class="wrap wpe-wrap">
     <script type="text/javascript">var __namespace = '<?php echo $namespace; ?>';</script>
 
-    <h2>Environments</h2>
-
-    <p>This plugin is made to easily setup domains and associate them with environments such as Local, Staging, and Production.</p>
-
-    <p><strong>Version: <?php echo $this->version; ?></strong></p>
-
-    <hr/>
-
-
     <?php
     if ( isset( $_GET[ 'message' ] ) && count( $this->admin_options_errors ) === 0 ):
         ?>
@@ -17,6 +8,14 @@
     <?php
     endif;
     ?>
+
+    <h2>Environments</h2>
+
+    <p>This plugin is made to easily setup domains and associate them with environments such as Local, Staging, and Production.</p>
+
+    <p><strong>Version: <?php echo $this->version; ?></strong></p>
+
+    <hr/>
 
     <form action="" method="post" id="<?php echo $namespace; ?>-admin-form">
         <?php wp_nonce_field( $namespace . "-update-options" ); ?>
