@@ -508,7 +508,7 @@ class WP_Environments
     /**
      * Clears out the passed array of blank quotes and null instances.
      *
-     * @param $array
+     * @param array $array
      *
      * @return array An array with no emptry or null values.
      */
