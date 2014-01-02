@@ -1,1 +1,1 @@
-phpdoc -f ./wp-environments-plugin.php -t ./docs/ --template="checkstyle"
+phpdoc -f ./wp-environments-plugin.php -t ./docs/ --template="responsive-twig"
