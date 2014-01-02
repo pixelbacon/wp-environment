@@ -1,5 +1,12 @@
 .domain-option {
+    margin-bottom: 5px;
     width: 100%;
+}
+
+.domain-option.invalid {
+    background-color: #fafafa;
+    border-color: #ddcdcc;
+    color: #880000;
 }
 
 .wpe-wrap pre {

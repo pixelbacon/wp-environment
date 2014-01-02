@@ -195,7 +195,7 @@
         </a>
     </li>
 
-                                                                                                                                                                                                                                                                                <li class="method public">
+                                                                                                                                                                                                                                                                                                                                        <li class="method public">
         <a href="#method_wp_route" title="wp_route :: Route the user based off of environment conditions">
             <span class="description">Route the user based off of environment conditions</span><pre>wp_route</pre>
         </a>
@@ -217,7 +217,7 @@
         </li>
         <li class="nav-header protected">» Protected
             <ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
         </li>
         <li class="nav-header private">» Private
             <ul>
@@ -239,6 +239,11 @@
                                                                                 <li class="method private">
                             <a href="#method__sanitize" title="_sanitize :: Sanitize data">
                                 <span class="description">Sanitize data</span><pre>_sanitize</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method private">
+                            <a href="#method__is_domain_valid" title="_is_domain_valid :: Validates a domain.">
+                                <span class="description">Validates a domain.</span><pre>_is_domain_valid</pre>
                             </a>
                         </li>
                                                                                 <li class="method private">
@@ -861,9 +866,11 @@ when the plugin is active.</p></div>
                                             </tr>
                                                                                     <tr>
                                                 <th>
-                                                    
+                                                    todo
                                                 </th>
                                                 <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>Use regex to validate domain input.</p>
                                                                                                     </td>
                                             </tr>
                                                                                     <tr>
@@ -916,6 +923,37 @@ when the plugin is active.</p></div>
                                                                             
                                                                             <h3>Response</h3>
                                         <code>mixed</code><p><p>The sanitized version of the data</p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method__is_domain_valid"></a>
+                        <div class="element clickable method private  method__is_domain_valid" data-toggle="collapse" data-target=".method__is_domain_valid .collapse">
+                            <h2>Validates a domain.</h2>
+                            <pre>_is_domain_valid(string $domain_name) : bool</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$domain_name</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>bool</code><p></p>
                                                                     </div>
                             </div>
                         </div>
@@ -1211,7 +1249,7 @@ etc. up for use.</p></div>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
             generated on 
 Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in phar:///usr/local/Cellar/phpdocumentor/2.2.0/libexec/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 89
-Thu, 02 Jan 2014 07:12:45 +0000.<br/>
+Thu, 02 Jan 2014 07:56:09 +0000.<br/>
     </footer>
     </body>
 </html>

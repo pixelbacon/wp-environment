@@ -9,13 +9,13 @@ defined( 'ABSPATH' ) OR exit;
  * @global object $wpdb
  *
  * @author  Mike Minor
- * @version 0.0.1r1
+ * @version 0.0.2r2
  */
 /*
 Plugin Name: Environments
 Plugin URI: https://github.com/pixelbacon/wp-environment
 Description: Sets constants for local, staging, and production environments based on your input.
-Version: 0.0.1r1
+Version: 0.0.2r2
 Author: (Mike Minor)
 Author URI: http://www.pixelbacon.com
 
@@ -44,7 +44,7 @@ class WP_Environments
     /**
      * @var string Version number of plugin.
      */
-    var $version = "0.0.1r1";
+    var $version = "0.0.2r2";
 
     /**
      * @var array Holds default values that are saved in options.
@@ -351,6 +351,8 @@ class WP_Environments
      * @uses WP_Environments::sanitize()
      * @uses wp_redirect()
      * @uses wp_verify_nonce()
+     *
+     * @todo Use regex to validate domain input.
      */
     private function _admin_options_update()
     {
@@ -425,6 +427,19 @@ class WP_Environments
         }
 
         return $str;
+    }
+
+    /**
+     * Validates a domain.
+     *
+     * @param string $domain_name
+     *
+     * @return bool
+     */
+    private function _is_domain_valid( $domain_name ){
+        return (preg_match("/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i", $domain_name) //valid chars check
+            && preg_match("/^.{1,253}$/", $domain_name) //overall length check
+            && preg_match("/^[^\.]{1,63}(\.[^\.]{1,63})*$/", $domain_name)   ); //length of each label
     }
 
     /**

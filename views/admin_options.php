@@ -30,7 +30,7 @@
                 </th>
                 <td>
                     <?php foreach ( $this->clean_array( $this->get_option( 'local_domains' ) ) as $key => $opt ) { ?>
-                        <input type="text" class="domain-option" name='data[local_domains][<?php print $key; ?>]'
+                        <input type="text" class="domain-option <?php print $this->_is_domain_valid($opt) ? 'valid' : 'invalid'; ?>" name='data[local_domains][<?php print $key; ?>]'
                                value="<?php print $opt; ?>"> <br/>
                     <?php } ?>
                     <input type="text" class="domain-option" name='data[local_domains][<?php print $key + 1; ?>]'
