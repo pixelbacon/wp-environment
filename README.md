@@ -6,6 +6,8 @@ WP-Environments is a wordpress plugin to set which environment your Wordpress in
 
 After activation a new sub section in "Settings" called "Environments" will appear.
 
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K3AUXUPR4GSHN)
+
 
 ## Usage
 
@@ -29,3 +31,4 @@ WPE_ENV_STAGING
 WPE_ENV_PROD 
 WPE_ENV
 </pre>
+

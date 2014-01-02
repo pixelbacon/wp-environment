@@ -152,7 +152,7 @@
 
     <h3>Donate</h3>
 
-    <p>If you find this plugin useful, don't hesitate to click the button below.</p>
+    <p>If you find this plugin useful, don't hesitate to click a button below.</p>
 
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick">
