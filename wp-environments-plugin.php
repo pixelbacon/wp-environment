@@ -9,13 +9,13 @@ defined( 'ABSPATH' ) OR exit;
  * @global object $wpdb
  *
  * @author  Mike Minor
- * @version 0.0.2r2
+ * @version 0.0.3r3
  */
 /*
 Plugin Name: Environments
 Plugin URI: https://github.com/pixelbacon/wp-environment
 Description: Sets constants for local, staging, and production environments based on your input.
-Version: 0.0.2r2
+Version: 0.0.3r3
 Author: (Mike Minor)
 Author URI: http://www.pixelbacon.com
 
@@ -44,7 +44,7 @@ class WP_Environments
     /**
      * @var string Version number of plugin.
      */
-    var $version = "0.0.2r2";
+    var $version = "0.0.3r3";
 
     /**
      * @var array Holds default values that are saved in options.
