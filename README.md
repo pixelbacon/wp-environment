@@ -1,7 +1,6 @@
 [Wordpress]: http://wordpress.com
 
-Environments [Wordpress] Plugin
-=================================
+#Environments [Wordpress] Plugin
 
 WP-Environments is a wordpress plugin to set which environment your Wordpress install is in such as local, staging, and production based on domains you define for each.
 
@@ -13,7 +12,7 @@ After activation a new sub section in "Settings" called "Environments" will appe
 Once all plugins are loaded, before the theme is loaded, the following constants and functions become available:
 
 
-## Functions
+### Functions
 
 <pre>
 WPE_isLocal()
@@ -22,7 +21,7 @@ WPE_isProd()
 </pre>
 
 
-## Constants
+### Constants
 
 <pre>
 WPE_ENV_DEV 
