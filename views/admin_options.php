@@ -146,5 +146,5 @@
 
     <h3>Docs</h3>
 
-    <p>The documentation uses <a href="http://www.phpdoc.org/" target="_blank">phpDocumentor</a> and can be viewed <a href="<?php print WPE_URLPATH; ?>docs" target="_blank">here</a>.</p>
+    <p>The documentation uses <a href="http://www.phpdoc.org/" target="_blank">phpDocumentor</a> and can be viewed <a href="<?php print WPE_URLPATH; ?>docs/packages/Default.html" target="_blank">here</a>.</p>
 </div>
