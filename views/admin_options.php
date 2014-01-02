@@ -140,7 +140,7 @@
 
     <h3>Github</h3>
 
-    <p>You can view the source <a href="https://github.com/pixelbacon/wp-environment" target="_blank">GitHub</a>.</p>
+    <p>You can view the source <a href="https://github.com/pixelbacon/wp-environment" target="_blank">GitHub</a>, when it comes to forking this is not code golf.</p>
 
     <hr/>
 
