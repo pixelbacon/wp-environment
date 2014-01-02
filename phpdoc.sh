@@ -1,0 +1,1 @@
+phpdoc -f ./wp-environments-plugin.php -t ./docs/ --template="checkstyle"

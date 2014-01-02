@@ -326,8 +326,6 @@ class WP_Environments
      */
     function wp_admin_options_page()
     {
-        global $WPE;
-
         if ( !current_user_can( 'manage_options' ) ) {
             require( WPE_DIRNAME . "/views/admin_no_options.php" );
 
@@ -515,14 +513,14 @@ class WP_Environments
      */
     static function instance()
     {
-        global $WPE;
+        global $WP_Environments;
 
         // Only instantiate the Class if it hasn't been already
-        if ( !isset( $WPE ) ) $WPE = new WP_Environments();
+        if ( !isset( $WP_Environments ) ) $WP_Environments = new WP_Environments();
     }
 }
 
-if ( !isset( $WPE ) ) {
+if ( !isset( $WP_Environments ) ) {
     WP_Environments::instance();
 }
 
@@ -533,8 +531,7 @@ if ( !isset( $WPE ) ) {
  */
 function WPE_isLocal()
 {
-    global $WPE;
-    return $WPE->isLocal();
+    return $WP_Environments->isLocal();
 }
 
 /**
@@ -543,8 +540,7 @@ function WPE_isLocal()
  */
 function WPE_isStaging()
 {
-    global $WPE;
-    return $WPE->isStaging();
+    return $WP_Environments->isStaging();
 }
 
 /**
@@ -553,11 +549,11 @@ function WPE_isStaging()
  */
 function WPE_isProd()
 {
-    global $WPE;
-    return $WPE->isProd();
+    return $WP_Environments->isProd();
 }
 
 register_activation_hook( __FILE__, array ( 'WP_Environments', 'activate' ) );
 register_deactivation_hook( __FILE__, array ( 'WP_Environments', 'deactivate' ) );
 
 ?>
+
