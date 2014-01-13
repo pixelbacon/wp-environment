@@ -143,8 +143,14 @@ class WP_Environments {
 	 * @param $env string WPE_LOCAL, WPE_STAGING, or WPE_PROD
 	 * @param $domain
 	 */
-	private function addDomain( $env, $domain ) {
+	private function addDomain( $env, &$domain ) {
+		$domain = trim( $domain );
+
 		$domains = $this->get_option( $env );
+
+		if( in_array( $domain, $domains ))
+			return;
+
 		array_push( $domains, $domain );
 		$this->update_option( $env, $domains );
 	}
@@ -155,7 +161,7 @@ class WP_Environments {
 	 * @param $domain string
 	 */
 	public function addLocalDomain( $domain ) {
-		$this->addDomain( WPE_ENV_LOCAL, $domain );
+		$this->addDomain( 'local_domains', $domain );
 	}
 
 	/**
@@ -164,7 +170,7 @@ class WP_Environments {
 	 * @param $domain string
 	 */
 	public function addStagingDomain( $domain ) {
-		$this->addDomain( WPE_ENV_STAGING, $domain );
+		$this->addDomain( 'staging_domains', $domain );
 	}
 
 	/**
@@ -173,7 +179,7 @@ class WP_Environments {
 	 * @param $domain string
 	 */
 	public function addProdDomain( $domain ) {
-		$this->addDomain( WPE_ENV_PROD, $domain );
+		$this->addDomain( 'production_domains', $domain );
 	}
 
 
@@ -255,6 +261,19 @@ class WP_Environments {
 		}
 
 		return false;
+	}
+
+	private function update_option( $option_name, &$value ){
+		if ( ! isset( $this->options ) || empty( $this->options ) ):
+			$this->options = get_option( $this->option_name, $this->defaults );
+		endif;
+
+		if( is_string( $value ) )
+			$value = trim( $value );
+		
+		$this->options[ $option_name ] = $this->_sanitize($value);
+
+		update_option( $this->option_name, $this->options );
 	}
 
 
