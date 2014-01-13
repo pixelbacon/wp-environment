@@ -140,6 +140,48 @@ class WP_Environments
 
 //-----------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
+//  Individual add functions
+//-----------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
+		/**
+		 * Adds a domain to the specified environment.
+		 *
+		 * @param $env string WPE_LOCAL, WPE_STAGING, or WPE_PROD
+		 * @param $domain
+		 */
+		private function addDomain( $env, $domain ){
+			$domains = $this->get_option( $env );
+			array_push( $domains, $domain );
+			$this->update_option( $env, $domains );
+		}
+
+		/**
+		 * Adds a domain to the Local environment.
+		 * @param $domain string
+		 */
+		public function addLocalDomain( $domain ){
+				$this->addDomain( WPE_ENV_LOCAL, $domain );
+			}
+
+		/**
+		 * Adds a domain to the Staging environment.
+		 * @param $domain string
+		 */
+		public function addStagingDomain( $domain ){
+				$this->addDomain( WPE_ENV_STAGING, $domain );
+			}
+
+		/**
+		 * Adds a domain to the Production environment.
+		 * @param $domain string
+		 */
+		public function addProdDomain( $domain ){
+			$this->addDomain( WPE_ENV_PROD, $domain );
+		}
+
+
+//-----------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
 //  STATIC METHODS
 //-----------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
@@ -555,6 +597,15 @@ function WPE_isLocal()
 }
 
 /**
+ * Adds domain to Local environment.
+ * @param $domain string
+ */
+function WPE_addLocalDomain( $domain ){
+	$global $WPE;
+	$WPE->addLocalDomain( $domain );
+}
+
+/**
  * Whether or not the server is in a staging environment.
  * @return bool
  */
@@ -565,6 +616,15 @@ function WPE_isStaging()
 }
 
 /**
+ * Adds domain to Staging environment.
+ * @param $domain string
+ */
+function WPE_addStagingDomain( $domain ){
+	$global $WPE;
+	$WPE->addStagingDomain( $domain );
+}
+
+/**
  * Whether or not the server is in a production environment.
  * @return bool
  */
@@ -572,6 +632,15 @@ function WPE_isProd()
 {
     global $WPE;
     return $WPE->isProd();
+}
+
+/**
+ * Adds domain to Production environment.
+ * @param $domain string
+ */
+function WPE_addProdDomain( $domain ){
+	$global $WPE;
+	$WPE->addProdDomain( $domain );
 }
 
 register_activation_hook( __FILE__, array ( 'WP_Environments', 'activate' ) );

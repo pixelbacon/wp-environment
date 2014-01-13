@@ -22,6 +22,12 @@ WPE_isStaging()
 WPE_isProd()
 </pre>
 
+#### Adding Domains Progromatically
+<pre>
+WPE_addLocalDomain( string $domain )
+WPE_addStagingDomain( string $domain )
+WPE_addProdDomain( string $domain )
+</pre>
 
 #### Constants
 
