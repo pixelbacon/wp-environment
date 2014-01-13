@@ -144,11 +144,10 @@ class WP_Environments {
 	 * @param $domain
 	 */
 	private function addDomain( $env, &$domain ) {
-		$domain = trim( $domain );
-
+		$domain  = trim( $domain );
 		$domains = $this->get_option( $env );
 
-		if( in_array( $domain, $domains ))
+		if ( in_array( $domain, $domains ) )
 			return;
 
 		array_push( $domains, $domain );
@@ -263,15 +262,15 @@ class WP_Environments {
 		return false;
 	}
 
-	private function update_option( $option_name, &$value ){
+	private function update_option( $option_name, &$value ) {
 		if ( ! isset( $this->options ) || empty( $this->options ) ):
 			$this->options = get_option( $this->option_name, $this->defaults );
 		endif;
 
-		if( is_string( $value ) )
+		if ( is_string( $value ) )
 			$value = trim( $value );
-		
-		$this->options[ $option_name ] = $this->_sanitize($value);
+
+		$this->options[$option_name] = $this->_sanitize( $value );
 
 		update_option( $this->option_name, $this->options );
 	}
