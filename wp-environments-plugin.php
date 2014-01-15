@@ -86,6 +86,10 @@ class WP_Environments {
 	 * @uses define
 	 */
 	private function _set_WPE_ENV() {
+		
+		if(defined( 'WPE_ENV' ))
+			return;
+
 		// Check for local/dev
 		if ( in_array( $_SERVER['HTTP_HOST'], $this->get_option( 'local_domains' ) ) ):
 			define( 'WPE_ENV', WPE_ENV_LOCAL );
@@ -112,6 +116,9 @@ class WP_Environments {
 	 * @return bool
 	 */
 	public function isLocal() {
+		if( !defined( 'WPE_ENV' ) )
+			$this->_set_WPE_ENV();
+
 		return WPE_ENV === WPE_ENV_LOCAL;
 	}
 
@@ -120,6 +127,9 @@ class WP_Environments {
 	 * @return bool
 	 */
 	public function isStaging() {
+		if( !defined( 'WPE_ENV' ) )
+			$this->_set_WPE_ENV();
+
 		return WPE_ENV === WPE_ENV_STAGING;
 	}
 
@@ -128,6 +138,9 @@ class WP_Environments {
 	 * @return bool
 	 */
 	public function isProd() {
+		if( !defined( 'WPE_ENV' ) )
+			$this->_set_WPE_ENV();
+
 		return WPE_ENV === WPE_ENV_PROD;
 	}
 
