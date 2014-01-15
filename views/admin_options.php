@@ -97,10 +97,10 @@
 	</p>
 
     <pre>
+				WPE_getOptionsUrl()
         WPE_isLocal()
         WPE_isStaging()
         WPE_isProd()
-				// Add domains programatically
 				WPE_addLocalDomain( string $domain )
 				WPE_addStagingDomain( string $domain )
 				WPE_addProdDomain( string $domain )
