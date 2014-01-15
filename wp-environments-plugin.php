@@ -9,13 +9,13 @@ defined( 'ABSPATH' ) OR exit;
  * @global object $wpdb
  *
  * @author  Mike Minor
- * @version 0.0.3r3
+ * @version 0.0.4r4
  */
 /*
 Plugin Name: Environments
 Plugin URI: https://github.com/pixelbacon/wp-environment
 Description: Sets constants for local, staging, and production environments based on your input.
-Version: 0.0.3r3
+Version: 0.0.4r4
 Author: (Mike Minor)
 Author URI: http://www.pixelbacon.com
 
@@ -109,6 +109,7 @@ class WP_Environments {
 		endif;
 
 		define( 'WPE_ENV', WPE_ENV_LOCAL );
+
 	}
 
 	/**
@@ -147,9 +148,19 @@ class WP_Environments {
 
 //-----------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
-//  Individual add functions
+//  Individual functions
 //-----------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
+	/**
+	 * Returns URL of WPE options page.
+	 *
+	 * return string
+	 */
+	function getOptionsUrl(){
+		return 'options-general.php?page=' . $this->namespace;
+	}
+
+
 	/**
 	 * Adds a domain to the specified environment.
 	 *
@@ -239,8 +250,9 @@ class WP_Environments {
 		// Add a settings link next to the "Deactivate" link on the plugin listing page
 		add_filter( 'plugin_action_links', array( &$this, 'wp_admin_plugin_action_links' ), 10, 2 );
 
-
 		add_action( 'plugins_loaded', array( &$this, 'wp_plugins_loaded' ) );
+
+		add_action( 'after_setup_theme', array( &$this, 'wp_after_theme_setup' ) );
 
 	}
 
@@ -301,6 +313,16 @@ class WP_Environments {
 	 */
 	public function wp_plugins_loaded() {
 		$this->_set_WPE_ENV();
+		do_action( 'WPE_ready' );
+	}
+
+	/**
+	* Called once theme is loaded, extra hook for after WPE is ready and theme is loaded.
+	 *
+	 * @see http://codex.wordpress.org/Plugin_API/Action_Reference/after_theme_loaded
+	*/
+	public function wp_after_theme_setup(){
+		do_action( 'WPE_after_theme_setup' );
 	}
 
 
@@ -309,6 +331,7 @@ class WP_Environments {
 //  WP - ADMIN
 //-----------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
+
 	/**
 	 * Define the admin menu options for this plugin
 	 *
@@ -593,9 +616,19 @@ class WP_Environments {
 		if ( ! isset( $WPE ) ) $WPE = new WP_Environments();
 	}
 }
-
+/** Set instance. */
 if ( ! isset( $WPE ) ) {
 	WP_Environments::instance();
+}
+
+
+/**
+ * Returns the URL of the WPE options page.
+ * @return string
+ */
+function WPE_getOptionsUrl(){
+	global $WPE;
+	return $WPE->getOptionsUrl();
 }
 
 

@@ -141,6 +141,12 @@
         </a>
     </li>
 
+                                                                                                        <li class="method public">
+        <a href="#method_getOptionsUrl" title="getOptionsUrl :: Returns URL of WPE options page.">
+            <span class="description">Returns URL of WPE options page.</span><pre>getOptionsUrl</pre>
+        </a>
+    </li>
+
                                                                                                                                                                 <li class="method public">
         <a href="#method_addLocalDomain" title="addLocalDomain :: Adds a domain to the Local environment.">
             <span class="description">Adds a domain to the Local environment.</span><pre>addLocalDomain</pre>
@@ -180,6 +186,12 @@
                                                                                                                                                                 <li class="method public">
         <a href="#method_wp_plugins_loaded" title="wp_plugins_loaded :: Called when &#039;plugins_loaded&#039; hook is fired.">
             <span class="description">Called when &#039;plugins_loaded&#039; hook is fired.</span><pre>wp_plugins_loaded</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_wp_after_theme_setup" title="wp_after_theme_setup :: Called once theme is loaded, extra hook for after WPE is ready and theme is loaded.">
+            <span class="description">Called once theme is loaded, extra hook for after WPE is ready and theme is loaded.</span><pre>wp_after_theme_setup</pre>
         </a>
     </li>
 
@@ -235,7 +247,7 @@
         </li>
         <li class="nav-header protected">» Protected
             <ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </ul>
         </li>
         <li class="nav-header private">» Private
             <ul>
@@ -244,7 +256,7 @@
                                 <span class="description">Sets the constant WPE_ENV.</span><pre>_set_WPE_ENV</pre>
                             </a>
                         </li>
-                                                                                                                                                                                            <li class="method private">
+                                                                                                                                                                                                                                <li class="method private">
                             <a href="#method_addDomain" title="addDomain :: Adds a domain to the specified environment.">
                                 <span class="description">Adds a domain to the specified environment.</span><pre>addDomain</pre>
                             </a>
@@ -259,7 +271,7 @@
                                 <span class="description"></span><pre>update_option</pre>
                             </a>
                         </li>
-                                                                                                                                                                                                                                                                                                        <li class="method private">
+                                                                                                                                                                                                                                                                                                                                            <li class="method private">
                             <a href="#method__admin_options_update" title="_admin_options_update :: Process update page form submissions">
                                 <span class="description">Process update page form submissions</span><pre>_admin_options_update</pre>
                             </a>
@@ -474,6 +486,37 @@
                                     
                                                                             <h3>Response</h3>
                                         <code>bool</code><p></p>
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_getOptionsUrl"></a>
+                        <div class="element clickable method public  method_getOptionsUrl" data-toggle="collapse" data-target=".method_getOptionsUrl .collapse">
+                            <h2>Returns URL of WPE options page.</h2>
+                            <pre>getOptionsUrl() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>return string</p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
                                                                     </div>
                             </div>
                         </div>
@@ -803,6 +846,47 @@
                                                 <td>
                                                                                                                                                                         
                                                                                                                                                                             \http://codex.wordpress.org/Plugin_API/Action_Reference/plugins_loaded
+                                                                                                                
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_wp_after_theme_setup"></a>
+                        <div class="element clickable method public  method_wp_after_theme_setup" data-toggle="collapse" data-target=".method_wp_after_theme_setup .collapse">
+                            <h2>Called once theme is loaded, extra hook for after WPE is ready and theme is loaded.</h2>
+                            <pre>wp_after_theme_setup() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    see
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                            \http://codex.wordpress.org/Plugin_API/Action_Reference/after_theme_loaded
                                                                                                                 
                                                                                                     </td>
                                             </tr>
@@ -1437,7 +1521,7 @@ etc. up for use.</p></div>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
             generated on 
 Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in phar:///usr/local/Cellar/phpdocumentor/2.2.0/libexec/phpDocumentor.phar/vendor/twig/twig/lib/Twig/Extension/Core.php on line 89
-Mon, 13 Jan 2014 06:55:42 +0000.<br/>
+Wed, 15 Jan 2014 20:34:18 +0000.<br/>
     </footer>
     </body>
 </html>
