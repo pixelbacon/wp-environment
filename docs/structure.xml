@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project title="WP Environment" version="2.2.0&#10;">
+  <partials/>
+  <file path="wp-environments-plugin.php" generated-path="wp-environments-plugin.html" hash="1b051a904be973399e483ee2618fe17c" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <constant namespace="" line="111" package="Default">
+      <name>WPE_ENV</name>
+      <full_name>\\WPE_ENV</full_name>
+      <value>WPE_ENV_LOCAL</value>
+      <docblock line="111">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+    </constant>
+    <function namespace="" line="629" package="Default">
+      <name>WPE_getOptionsUrl</name>
+      <full_name>\WPE_getOptionsUrl()</full_name>
+      <docblock line="629">
+        <description>Returns the URL of the WPE options page.</description>
+        <long-description></long-description>
+        <tag name="return" line="629" description="" type="string">
+          <type>string</type>
+        </tag>
+      </docblock>
+    </function>
+    <function namespace="" line="639" package="Default">
+      <name>WPE_isLocal</name>
+      <full_name>\WPE_isLocal()</full_name>
+      <docblock line="639">
+        <description>Whether or not the server is a local development environment.</description>
+        <long-description></long-description>
+        <tag name="return" line="639" description="" type="bool">
+          <type>bool</type>
+        </tag>
+      </docblock>
+    </function>
+    <function namespace="" line="649" package="Default">
+      <name>WPE_addLocalDomain</name>
+      <full_name>\WPE_addLocalDomain()</full_name>
+      <docblock line="649">
+        <description>Adds domain to Local environment.</description>
+        <long-description></long-description>
+        <tag name="param" line="649" description="&lt;p&gt;string&lt;/p&gt;" type="" variable="$domain"/>
+      </docblock>
+      <argument line="0" by_reference="false">
+        <name>$domain</name>
+        <default></default>
+        <type>mixed</type>
+      </argument>
+    </function>
+    <function namespace="" line="658" package="Default">
+      <name>WPE_isStaging</name>
+      <full_name>\WPE_isStaging()</full_name>
+      <docblock line="658">
+        <description>Whether or not the server is in a staging environment.</description>
+        <long-description></long-description>
+        <tag name="return" line="658" description="" type="bool">
+          <type>bool</type>
+        </tag>
+      </docblock>
+    </function>
+    <function namespace="" line="668" package="Default">
+      <name>WPE_addStagingDomain</name>
+      <full_name>\WPE_addStagingDomain()</full_name>
+      <docblock line="668">
+        <description>Adds domain to Staging environment.</description>
+        <long-description></long-description>
+        <tag name="param" line="668" description="&lt;p&gt;string&lt;/p&gt;" type="" variable="$domain"/>
+      </docblock>
+      <argument line="0" by_reference="false">
+        <name>$domain</name>
+        <default></default>
+        <type>mixed</type>
+      </argument>
+    </function>
+    <function namespace="" line="677" package="Default">
+      <name>WPE_isProd</name>
+      <full_name>\WPE_isProd()</full_name>
+      <docblock line="677">
+        <description>Whether or not the server is in a production environment.</description>
+        <long-description></long-description>
+        <tag name="return" line="677" description="" type="bool">
+          <type>bool</type>
+        </tag>
+      </docblock>
+    </function>
+    <function namespace="" line="687" package="Default">
+      <name>WPE_addProdDomain</name>
+      <full_name>\WPE_addProdDomain()</full_name>
+      <docblock line="687">
+        <description>Adds domain to Production environment.</description>
+        <long-description></long-description>
+        <tag name="param" line="687" description="&lt;p&gt;string&lt;/p&gt;" type="" variable="$domain"/>
+      </docblock>
+      <argument line="0" by_reference="false">
+        <name>$domain</name>
+        <default></default>
+        <type>mixed</type>
+      </argument>
+    </function>
+    <class final="false" abstract="false" namespace="" line="32" package="Default">
+      <extends/>
+      <name>WP_Environments</name>
+      <full_name>\WP_Environments</full_name>
+      <docblock line="32">
+        <description>Class WP_Environments</description>
+        <long-description>Wordpress plugin used to associate domains with environments for local, staging, and production.</long-description>
+      </docblock>
+      <property static="false" visibility="public" line="36" namespace="" package="Default">
+        <name>$namespace</name>
+        <default>"wp-environments"</default>
+        <docblock line="36">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="36" description="&lt;p&gt;Name used in code, and in DB.&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="public" line="41" namespace="" package="Default">
+        <name>$friendly_name</name>
+        <default>"Environments"</default>
+        <docblock line="41">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="41" description="&lt;p&gt;Easy to read name for plugin.&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="public" line="46" namespace="" package="Default">
+        <name>$version</name>
+        <default>WPE_VERSION</default>
+        <docblock line="46">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="46" description="&lt;p&gt;Version number of plugin.&lt;/p&gt;" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="public" line="51" namespace="" package="Default">
+        <name>$defaults</name>
+        <default>array('local_domains' =&gt; array('localhost'), 'staging_domains' =&gt; array(), 'production_domains' =&gt; array())</default>
+        <docblock line="51">
+          <description></description>
+          <long-description></long-description>
+          <tag name="var" line="51" description="&lt;p&gt;Holds default values that are saved in options.&lt;/p&gt;" type="array" variable="">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="60" package="Default">
+        <name>__construct</name>
+        <full_name>\WP_Environments::__construct()</full_name>
+        <docblock line="60">
+          <description>Constructor function. Sets up option name, loads php files in lib directory, and sets up hooks.</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="88" package="Default">
+        <name>_set_WPE_ENV</name>
+        <full_name>\WP_Environments::_set_WPE_ENV()</full_name>
+        <docblock line="88">
+          <description>Sets the constant WPE_ENV.</description>
+          <long-description></long-description>
+          <tag name="uses" line="88" description="" link="in_array"/>
+          <tag name="uses" line="88" description="" link="define"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="119" package="Default">
+        <name>isLocal</name>
+        <full_name>\WP_Environments::isLocal()</full_name>
+        <docblock line="119">
+          <description>Whether or not the server is a local development environment.</description>
+          <long-description></long-description>
+          <tag name="return" line="119" description="" type="bool">
+            <type>bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="130" package="Default">
+        <name>isStaging</name>
+        <full_name>\WP_Environments::isStaging()</full_name>
+        <docblock line="130">
+          <description>Whether or not the server is in a staging environment.</description>
+          <long-description></long-description>
+          <tag name="return" line="130" description="" type="bool">
+            <type>bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="141" package="Default">
+        <name>isProd</name>
+        <full_name>\WP_Environments::isProd()</full_name>
+        <docblock line="141">
+          <description>Whether or not the server is in a production environment.</description>
+          <long-description></long-description>
+          <tag name="return" line="141" description="" type="bool">
+            <type>bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="159" package="Default">
+        <name>getOptionsUrl</name>
+        <full_name>\WP_Environments::getOptionsUrl()</full_name>
+        <docblock line="159">
+          <description>Returns URL of WPE options page.</description>
+          <long-description>return string</long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="170" package="Default">
+        <name>_addDomain</name>
+        <full_name>\WP_Environments::_addDomain()</full_name>
+        <docblock line="170">
+          <description>Adds a domain to the specified environment.</description>
+          <long-description></long-description>
+          <tag name="param" line="170" description="&lt;p&gt;string WPE_LOCAL, WPE_STAGING, or WPE_PROD&lt;/p&gt;" type="" variable="$env"/>
+          <tag name="param" line="170" description="" type="" variable="$domain"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$env</name>
+          <default></default>
+          <type>mixed</type>
+        </argument>
+        <argument line="0" by_reference="true">
+          <name>$domain</name>
+          <default></default>
+          <type>mixed</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="186" package="Default">
+        <name>addLocalDomain</name>
+        <full_name>\WP_Environments::addLocalDomain()</full_name>
+        <docblock line="186">
+          <description>Adds a domain to the Local environment.</description>
+          <long-description></long-description>
+          <tag name="param" line="186" description="&lt;p&gt;string&lt;/p&gt;" type="" variable="$domain"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$domain</name>
+          <default></default>
+          <type>mixed</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="195" package="Default">
+        <name>addStagingDomain</name>
+        <full_name>\WP_Environments::addStagingDomain()</full_name>
+        <docblock line="195">
+          <description>Adds a domain to the Staging environment.</description>
+          <long-description></long-description>
+          <tag name="param" line="195" description="&lt;p&gt;string&lt;/p&gt;" type="" variable="$domain"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$domain</name>
+          <default></default>
+          <type>mixed</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="204" package="Default">
+        <name>addProdDomain</name>
+        <full_name>\WP_Environments::addProdDomain()</full_name>
+        <docblock line="204">
+          <description>Adds a domain to the Production environment.</description>
+          <long-description></long-description>
+          <tag name="param" line="204" description="&lt;p&gt;string&lt;/p&gt;" type="" variable="$domain"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$domain</name>
+          <default></default>
+          <type>mixed</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="" line="217" package="Default">
+        <name>activate</name>
+        <full_name>\WP_Environments::activate()</full_name>
+        <docblock line="217">
+          <description>Hook into register_activation_hook action</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="" line="223" package="Default">
+        <name>deactivate</name>
+        <full_name>\WP_Environments::deactivate()</full_name>
+        <docblock line="223">
+          <description>Hook into register_deactivation_hook action</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="243" package="Default">
+        <name>_add_hooks</name>
+        <full_name>\WP_Environments::_add_hooks()</full_name>
+        <docblock line="243">
+          <description>Adds hooks needed for working within the flow of Wordpress.</description>
+          <long-description>Adds hooks for:
+- admin_menu
+- init
+- plugin_action_links
+- plugins_loaded</long-description>
+          <tag name="uses" line="243" description="" link="add_action"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="273" package="Default">
+        <name>get_option</name>
+        <full_name>\WP_Environments::get_option()</full_name>
+        <docblock line="273">
+          <description>Retrieve the stored plugin option or the default if no user specified value is defined</description>
+          <long-description></long-description>
+          <tag name="param" line="273" description="&lt;p&gt;The name of the option you'd like to get.&lt;/p&gt;" type="string" variable="$option_name">
+            <type>string</type>
+          </tag>
+          <tag name="uses" line="273" description="" link="get_option()"/>
+          <tag name="return" line="273" description="Returns the option value or false(boolean) if the option is not found" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$option_name</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="290" package="Default">
+        <name>update_option</name>
+        <full_name>\WP_Environments::update_option()</full_name>
+        <docblock line="290">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$option_name</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="true">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="314" package="Default">
+        <name>wp_plugins_loaded</name>
+        <full_name>\WP_Environments::wp_plugins_loaded()</full_name>
+        <docblock line="314">
+          <description>Called when 'plugins_loaded' hook is fired.</description>
+          <long-description></long-description>
+          <tag name="see" line="314" description="" link="\http://codex.wordpress.org/Plugin_API/Action_Reference/plugins_loaded"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="324" package="Default">
+        <name>wp_after_theme_setup</name>
+        <full_name>\WP_Environments::wp_after_theme_setup()</full_name>
+        <docblock line="324">
+          <description>Called once theme is loaded, extra hook for after WPE is ready and theme is loaded.</description>
+          <long-description></long-description>
+          <tag name="see" line="324" description="" link="\http://codex.wordpress.org/Plugin_API/Action_Reference/after_theme_loaded"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="341" package="Default">
+        <name>wp_admin_menu</name>
+        <full_name>\WP_Environments::wp_admin_menu()</full_name>
+        <docblock line="341">
+          <description>Define the admin menu options for this plugin</description>
+          <long-description></long-description>
+          <tag name="uses" line="341" description="" link="add_action()"/>
+          <tag name="uses" line="341" description="" link="add_options_page()"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="369" package="Default">
+        <name>wp_admin_enqueue_scripts</name>
+        <full_name>\WP_Environments::wp_admin_enqueue_scripts()</full_name>
+        <docblock line="369">
+          <description>Admin - Enqueue JS file(s).</description>
+          <long-description></long-description>
+          <tag name="uses" line="369" description="" link="wp_register_style()"/>
+          <tag name="uses" line="369" description="" link="wp_enqueue_style()"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="380" package="Default">
+        <name>wp_admin_enqueue_styles</name>
+        <full_name>\WP_Environments::wp_admin_enqueue_styles()</full_name>
+        <docblock line="380">
+          <description>Admin - Enqueue CSS file(s).</description>
+          <long-description></long-description>
+          <tag name="uses" line="380" description="" link="wp_register_style()"/>
+          <tag name="uses" line="380" description="" link="wp_enqueue_style()"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="396" package="Default">
+        <name>wp_admin_plugin_action_links</name>
+        <full_name>\WP_Environments::wp_admin_plugin_action_links()</full_name>
+        <docblock line="396">
+          <description>Hook into plugin_action_links filter</description>
+          <long-description>Adds a "Settings" link next to the "Deactivate" link in the plugin listing page
+when the plugin is active.</long-description>
+          <tag name="param" line="396" description="&lt;p&gt;An array of the links to show, this will be the modified variable&lt;/p&gt;" type="object" variable="$links">
+            <type>object</type>
+          </tag>
+          <tag name="param" line="396" description="&lt;p&gt;The name of the file being processed in the filter&lt;/p&gt;" type="string" variable="$file">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="396" description="Links after after adding the plugin's Settings link." type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$links</name>
+          <default></default>
+          <type>object</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$file</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="414" package="Default">
+        <name>wp_admin_options_page</name>
+        <full_name>\WP_Environments::wp_admin_options_page()</full_name>
+        <docblock line="414">
+          <description>The admin section options page rendering method</description>
+          <long-description></long-description>
+          <tag name="uses" line="414" description="" link="current_user_can()"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="441" package="Default">
+        <name>_admin_options_update</name>
+        <full_name>\WP_Environments::_admin_options_update()</full_name>
+        <docblock line="441">
+          <description>Process update page form submissions</description>
+          <long-description></long-description>
+          <tag name="uses" line="441" description="" link="WP_Environments::sanitize()"/>
+          <tag name="uses" line="441" description="" link="wp_redirect()"/>
+          <tag name="uses" line="441" description="" link="wp_verify_nonce()"/>
+          <tag name="todo" line="441" description="Use regex to validate domain input."/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="493" package="Default">
+        <name>_sanitize</name>
+        <full_name>\WP_Environments::_sanitize()</full_name>
+        <docblock line="493">
+          <description>Sanitize data</description>
+          <long-description></long-description>
+          <tag name="param" line="493" description="&lt;p&gt;The data to be sanitized&lt;/p&gt;" type="string|array" variable="$str">
+            <type>string</type>
+            <type>array</type>
+          </tag>
+          <tag name="uses" line="493" description="" link="wp_kses()"/>
+          <tag name="return" line="493" description="The sanitized version of the data" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$str</name>
+          <default></default>
+          <type>string|array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="521" package="Default">
+        <name>_is_domain_valid</name>
+        <full_name>\WP_Environments::_is_domain_valid()</full_name>
+        <docblock line="521">
+          <description>Validates a domain.</description>
+          <long-description></long-description>
+          <tag name="param" line="521" description="" type="string" variable="$domain_name">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="521" description="" type="bool">
+            <type>bool</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$domain_name</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="" line="534" package="Default">
+        <name>_get_error_code</name>
+        <full_name>\WP_Environments::_get_error_code()</full_name>
+        <docblock line="534">
+          <description>Returns a string based on the key passed. For generic errors only.</description>
+          <long-description></long-description>
+          <tag name="param" line="534" description="" type="string" variable="$key">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="534" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="559" package="Default">
+        <name>wp_route</name>
+        <full_name>\WP_Environments::wp_route()</full_name>
+        <docblock line="559">
+          <description>Route the user based off of environment conditions</description>
+          <long-description>This function will handling routing of form submissions to the appropriate
+form processor.</long-description>
+          <tag name="uses" line="559" description="" link="WP_Environments-&gt;_admin_options_update()"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="" line="595" package="Default">
+        <name>clean_array</name>
+        <full_name>\WP_Environments::clean_array()</full_name>
+        <docblock line="595">
+          <description>Clears out the passed array of blank quotes and null instances.</description>
+          <long-description></long-description>
+          <tag name="param" line="595" description="" type="array" variable="$array">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="595" description="An array with no emptry or null values." type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="true">
+          <name>$array</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="" line="612" package="Default">
+        <name>instance</name>
+        <full_name>\WP_Environments::instance()</full_name>
+        <docblock line="612">
+          <description>Initialization function to hook into the WordPress init action</description>
+          <long-description>Instantiates the class on a global variable and sets the class, actions
+etc. up for use.</long-description>
+        </docblock>
+      </method>
+    </class>
+    <markers>
+      <todo line="441">Use regex to validate domain input.</todo>
+    </markers>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="290" code="PPC:ERR-50015">Argument $option_name is missing from the Docblock of update_option()</error>
+      <error line="290" code="PPC:ERR-50015">Argument $value is missing from the Docblock of update_option()</error>
+      <error line="290" code="PPC:ERR-50008">No summary for method update_option()</error>
+    </parse_markers>
+    <source>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</source>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <namespace name="global" full_name="global"/>
+  <deprecated count="0"/>
+</project>

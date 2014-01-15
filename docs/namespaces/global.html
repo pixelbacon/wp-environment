@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>WP Environment » Default</title>
+<title>WP Environment » global</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -51,9 +51,9 @@
 </div>
 <ul class="side-nav nav nav-list">
 <li class="nav-header">
-<i class="icon-map-marker"></i> Packages</li>
+<i class="icon-map-marker"></i> Namespaces</li>
 <li>
-<a href="../packages/Default.html" title="Default"><i class="icon-folder-open"></i>Default</a><ul class="nav nav-list nav-packages"></ul>
+<span class="empty-namespace"><i class="icon-stop"></i>global</span><ul class="nav nav-list nav-namespaces"></ul>
 </li>
 <li class="nav-header">
 <i title="Functions" class="icon-custom icon-function"></i> Functions</li>
@@ -72,105 +72,7 @@
 <li class="constant  "><a href="#constant_WPE_ENV" title="WPE_ENV() :: "><span class="description">WPE_ENV</span><pre>WPE_ENV</pre></a></li>
 </ul>
 </div>
-<div class="span8 package-contents">
-<ul class="breadcrumb"><li>
-<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li class="active"><a href="../packages/Default.html">Default</a></li>
-</li></ul>
-<div class="package-indent">
-<h3>
-<i title="Functions" class="icon-custom icon-function"></i> Functions</h3>
-<a id="function_WPE_addLocalDomain"></a><div class="element clickable function  function_WPE_addLocalDomain" data-toggle="collapse" data-target=".function_WPE_addLocalDomain .collapse" title="">
-<h2>Adds domain to Local environment.</h2>
-<pre>WPE_addLocalDomain(mixed $domain) </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$domain</h4><p>string</p></div>
-</div></div>
-</div>
-<a id="function_WPE_addProdDomain"></a><div class="element clickable function  function_WPE_addProdDomain" data-toggle="collapse" data-target=".function_WPE_addProdDomain .collapse" title="">
-<h2>Adds domain to Production environment.</h2>
-<pre>WPE_addProdDomain(mixed $domain) </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$domain</h4><p>string</p></div>
-</div></div>
-</div>
-<a id="function_WPE_addStagingDomain"></a><div class="element clickable function  function_WPE_addStagingDomain" data-toggle="collapse" data-target=".function_WPE_addStagingDomain .collapse" title="">
-<h2>Adds domain to Staging environment.</h2>
-<pre>WPE_addStagingDomain(mixed $domain) </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$domain</h4><p>string</p></div>
-</div></div>
-</div>
-<a id="function_WPE_getOptionsUrl"></a><div class="element clickable function  function_WPE_getOptionsUrl" data-toggle="collapse" data-target=".function_WPE_getOptionsUrl .collapse" title="">
-<h2>Returns the URL of the WPE options page.</h2>
-<pre>WPE_getOptionsUrl() : string</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Returns</h3>
-<div class="subelement response"><code>string</code></div>
-</div></div>
-</div>
-<a id="function_WPE_isLocal"></a><div class="element clickable function  function_WPE_isLocal" data-toggle="collapse" data-target=".function_WPE_isLocal .collapse" title="">
-<h2>Whether or not the server is a local development environment.</h2>
-<pre>WPE_isLocal() : bool</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Returns</h3>
-<div class="subelement response"><code>bool</code></div>
-</div></div>
-</div>
-<a id="function_WPE_isProd"></a><div class="element clickable function  function_WPE_isProd" data-toggle="collapse" data-target=".function_WPE_isProd .collapse" title="">
-<h2>Whether or not the server is in a production environment.</h2>
-<pre>WPE_isProd() : bool</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Returns</h3>
-<div class="subelement response"><code>bool</code></div>
-</div></div>
-</div>
-<a id="function_WPE_isStaging"></a><div class="element clickable function  function_WPE_isStaging" data-toggle="collapse" data-target=".function_WPE_isStaging .collapse" title="">
-<h2>Whether or not the server is in a staging environment.</h2>
-<pre>WPE_isStaging() : bool</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Returns</h3>
-<div class="subelement response"><code>bool</code></div>
-</div></div>
-</div>
-<h3>
-<i title="Classes" class="icon-custom icon-class"></i> Classes and interfaces</h3>
-<div id="WP_Environments" class="element ajax clickable class">
-<h1>WP_Environments<a href="../classes/WP_Environments.html">¶</a>
-</h1>
-<p class="short_description">Class WP_Environments</p>
-<div class="details collapse"></div>
-<a href="../classes/WP_Environments.html" class="more">« More »</a>
-</div>
-<h3>
-<i title="Constants" class="icon-custom icon-constant"></i> Constants</h3>
-<a id="constant_WPE_ENV"> </a><div class="element clickable constant  constant_WPE_ENV" data-toggle="collapse" data-target=".constant_WPE_ENV .collapse" title="">
-<h2>WPE_ENV</h2>
-<pre>WPE_ENV = WPE_ENV_LOCAL </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
-</div>
-</div>
-</div>
+<div class="span8 namespace-contents"></div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
