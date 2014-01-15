@@ -156,7 +156,7 @@ class WP_Environments {
 	 *
 	 * return string
 	 */
-	private function getOptionsUrl(){
+	public function getOptionsUrl(){
 		return 'options-general.php?page=' . $this->namespace;
 	}
 
@@ -167,7 +167,7 @@ class WP_Environments {
 	 * @param $env string WPE_LOCAL, WPE_STAGING, or WPE_PROD
 	 * @param $domain
 	 */
-	private function addDomain( $env, &$domain ) {
+	private function _addDomain( $env, &$domain ) {
 		$domain  = trim( $domain );
 		$domains = $this->get_option( $env );
 
@@ -184,7 +184,7 @@ class WP_Environments {
 	 * @param $domain string
 	 */
 	public function addLocalDomain( $domain ) {
-		$this->addDomain( 'local_domains', $domain );
+		$this->_addDomain( 'local_domains', $domain );
 	}
 
 	/**
@@ -193,7 +193,7 @@ class WP_Environments {
 	 * @param $domain string
 	 */
 	public function addStagingDomain( $domain ) {
-		$this->addDomain( 'staging_domains', $domain );
+		$this->_addDomain( 'staging_domains', $domain );
 	}
 
 	/**
@@ -202,7 +202,7 @@ class WP_Environments {
 	 * @param $domain string
 	 */
 	public function addProdDomain( $domain ) {
-		$this->addDomain( 'production_domains', $domain );
+		$this->_addDomain( 'production_domains', $domain );
 	}
 
 
