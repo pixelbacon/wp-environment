@@ -43,7 +43,7 @@ class WP_Environments {
 	/**
 	 * @var string Version number of plugin.
 	 */
-	var $version = "0.0.3r3";
+	var $version = WPE_VERSION;
 
 	/**
 	 * @var array Holds default values that are saved in options.
@@ -156,7 +156,7 @@ class WP_Environments {
 	 *
 	 * return string
 	 */
-	function getOptionsUrl(){
+	private function getOptionsUrl(){
 		return 'options-general.php?page=' . $this->namespace;
 	}
 
