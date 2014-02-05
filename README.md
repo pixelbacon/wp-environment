@@ -33,7 +33,7 @@ WPE_ENV_PROD
 WPE_ENV
 </pre>
 
-#### Adding Domains Progromatically
+#### Adding Domains Programmatically
 
 <pre>
 WPE_addLocalDomain( string|array $domain )
