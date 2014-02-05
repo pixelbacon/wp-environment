@@ -1,3 +1,11 @@
+<style>
+	label .sub {
+		display: block;
+		font-weight: normal;
+		font-size: .7em;
+	}
+</style>
+
 <div class="wrap wpe-wrap">
 	<script type="text/javascript">var __namespace = '<?php echo $namespace; ?>';</script>
 
@@ -24,48 +32,29 @@
 			<tbody>
 			<h3>Domains per Environment</h3>
 
-			<tr valign="top">
-				<th scope="row">
-					Local
-				</th>
-				<td>
-					<?php foreach ( $this->clean_array( $this->get_option( 'local_domains' ) ) as $key => $opt ) { ?>
-						<input type="text" class="domain-option <?php print $this->_is_domain_valid( $opt ) ? 'valid' : 'invalid'; ?>" name='data[local_domains][<?php print $key; ?>]'
-									 value="<?php print $opt; ?>"> <br />
-					<?php } ?>
-					<input type="text" class="domain-option" name='data[local_domains][<?php print $key + 1; ?>]'
-								 value="">
-				</td>
-			</tr>
+			<?php
+				$environments = array(
+					'local_domains'          => 'Local <span class="sub">Running on your machine...</span>',
+					'staging_domains'        => 'Staging <span class="sub">Running on your company\'s server...</span>',
+					'pre_production_domains' => 'Pre-Production <span class="sub">Running on your client\'s server...</span>',
+					'production_domains'     => 'Production <span class="sub">Running on your client\'s server...</span>',
+				);
 
-			<tr valign="top">
-				<th scope="row">
-					Staging
-				</th>
-				<td>
-					<?php foreach ( $this->clean_array( $this->get_option( 'staging_domains' ) ) as $key => $opt ) { ?>
-						<input type="text" class="domain-option" name='data[staging_domains][<?php print $key; ?>]'
-									 value="<?php print $opt; ?>"> <br />
-					<?php } ?>
-					<input type="text" class="domain-option" name='data[staging_domains][<?php print $key + 1; ?>]'
-								 value="">
-				</td>
-			</tr>
+				foreach ($environments as $env => $label): ?>
+					<tr valign="top">
+						<th scope="row">
+							<label for=""><?php print $label; ?></label>
+						</th>
 
-			<tr valign="top">
-				<th scope="row">
-					Production
-				</th>
-				<td>
-					<?php foreach ( $this->clean_array( $this->get_option( 'production_domains' ) ) as $key => $opt ) { ?>
-						<input type="text" class="domain-option" name='data[production_domains][<?php print $key; ?>]'
-									 value="<?php print $opt; ?>"> <br />
-					<?php } ?>
-					<input type="text" class="domain-option" name='data[production_domains][<?php print $key + 1; ?>]'
-								 value="">
-				</td>
-			</tr>
-			</tbody>
+						<td>
+							<?php foreach ( $this->clean_array( $this->_get_option( $env ) ) as $key => $opt ) { ?>
+								<input type="text" class="domain-option <?php print $this->_is_domain_valid( $opt ) ? 'valid' : 'invalid'; ?>" name='data[<?php print $env; ?>][<?php print $key; ?>]'
+											 value="<?php print $opt; ?>"> <br />
+							<?php } ?>
+							<input type="text" class="domain-option" name='data[<?php print $env; ?>][<?php print $key + 1; ?>]' value="">
+						</td>
+					</tr>
+			<?php endforeach; ?>
 		</table>
 
 		<?php submit_button(); ?>
@@ -84,6 +73,7 @@
     <pre>
         WPE_ENV_DEV
         WPE_ENV_STAGING
+        WPE_ENV_PREPROD
         WPE_ENV_PROD
         WPE_ENV
     </pre>
@@ -97,37 +87,41 @@
 	</p>
 
     <pre>
-				WPE_getOptionsUrl()
+		WPE_getOptionsUrl()
         WPE_isLocal()
         WPE_isStaging()
         WPE_isProd()
-				WPE_addLocalDomain( string $domain )
-				WPE_addStagingDomain( string $domain )
-				WPE_addProdDomain( string $domain )
+        WPE_isPreProd()
+        WPE_addLocalDomain( string|array $domain )
+		WPE_addStagingDomain( string|array $domain )
+		WPE_addPreProdDomain( string|array $domain )
+		WPE_addProdDomain( string|array $domain )
     </pre>
 
 	<hr />
 
 	<table class="form-table">
 		<tbody>
-		<h3>Variables/Function Tests</h3>
+			<h3>Variables/Function Tests</h3>
 
-		<tr valign="top">
-			<th scope="row">
-				$_SERVER['HTTP_HOST'] <br>
-				WPE_ENV <br>
-				WPE_isLocal() <br>
-				WPE_isStaging() <br>
-				WPE_isProd() <br>
-			</th>
-			<td>
-				<?php print $_SERVER['HTTP_HOST']; ?> <br>
-				<?php print WPE_ENV; ?> <br>
-				<?php echo WPE_isLocal() ? 'true' : 'false'; ?> <br>
-				<?php echo WPE_isStaging() ? 'true' : 'false'; ?> <br>
-				<?php echo WPE_isProd() ? 'true' : 'false'; ?>
-			</td>
-		</tr>
+			<tr valign="top">
+				<th scope="row">
+					$_SERVER['HTTP_HOST'] <br>
+					WPE_ENV <br>
+					WPE_isLocal() <br>
+					WPE_isStaging() <br>
+					WPE_isPreProd() <br>
+					WPE_isProd() <br>
+				</th>
+				<td>
+					<?php print $_SERVER['HTTP_HOST']; ?> <br>
+					<?php print WPE_ENV; ?> <br>
+					<?php echo WPE_isLocal() ? 'true' : 'false'; ?> <br>
+					<?php echo WPE_isStaging() ? 'true' : 'false'; ?> <br>
+					<?php echo WPE_isPreProd() ? 'true' : 'false'; ?> <br>
+					<?php echo WPE_isProd() ? 'true' : 'false'; ?>
+				</td>
+			</tr>
 		</tbody>
 	</table>
 
@@ -141,6 +135,86 @@
 		<i>$_SERVER['HTTP_HOST']</i> is inspected. Upon matching one of the
 		domains you've added, <i>WPE_ENV</i> is set to the environment.
 	</p>
+
+	<hr />
+
+	<table class="form-table">
+		<tbody>
+			<tr valign="top">
+				<th scope="row">
+					<h3>Prebaked Code</h3>
+				</th>
+
+				<td>
+					<p>In some cases you might want to declare the environment right away; below is code that will do that and match with the plugin.</p>
+				</td>
+			</tr>
+
+			<tr valign="top">
+				<th scope="row">&nbsp;</th>
+
+				<td>
+					<?php $environments = array(
+						WPE_ENV_LOCAL   => 'local_domains',
+						WPE_ENV_PROD    => 'production_domains',
+						WPE_ENV_PREPROD => 'pre_production_domains',
+						WPE_ENV_STAGING => 'production_domains',
+					);
+					?>
+					<pre>
+						if(isset($_SERVER['HTTP_HOST'])){
+						&nbsp;switch($_SERVER['HTTP_HOST']) {
+						<?php
+							foreach ($environments as $key => $value):
+								if(array_filter($this->_get_option($value)) != NULL):
+									foreach ( array_filter($this->_get_option($value)) as $index => $domain): if(!empty($domain)): ?>
+											&nbsp;&nbsp;case "<?php print $domain; ?>":
+									<?php endif; endforeach; ?>
+						&nbsp;&nbsp;&nbsp;WPE_ENV = '<?php print $key; ?>';
+						&nbsp;&nbsp;&nbsp;break;
+
+						<?php
+							endif; endforeach; ;
+						?>
+						&nbsp;&nbsp;default:
+						&nbsp;&nbsp;&nbsp;WPE_ENV = '<?php print WPE_ENV_LOCAL; ?>';
+						&nbsp;&nbsp;&nbsp;break;
+						&nbsp;}
+						};
+					</pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<hr />
+
+	<table class="form-table">
+		<h3>Change log</h3>
+
+		<tbody>
+			<tr valign="top">
+				<th scope="row">0.0.5r5</th>
+				<td>
+					<ul>
+						<li>Arrays can now be used when adding domains.</li>
+						<li>Added pre-production environment; running on a client's staging environment for example.</li>
+						<li>Cleaned up code for displaying options.</li>
+						<li>Added Prebaked Code section if the person would like to use this in <i>wp-config.php.</i></li>
+						<li>New docs.</li>
+					</ul>
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row">0.0.4r4</th>
+				<td>
+					<ul>
+						<li>New docs.</li>
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 
 	<hr />
 

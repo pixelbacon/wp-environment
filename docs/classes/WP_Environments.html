@@ -28,7 +28,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">4</span></a></li>
+                <span class="label label-info">3</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul></ul></a></li>
 <li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
@@ -59,18 +59,21 @@
 <i title="Methods" class="icon-custom icon-method"></i> Methods
                     <ul>
 <li class="method public "><a href="#method___construct" title="__construct() :: Constructor function. Sets up option name, loads php files in lib directory, and sets up hooks."><span class="description">Constructor function. Sets up option name, loads php files in lib directory, and sets up hooks.</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method__get_option" title="_get_option() :: Retrieve the stored plugin option or the default if no user specified value is defined"><span class="description">Retrieve the stored plugin option or the default if no user specified value is defined</span><pre>_get_option()</pre></a></li>
 <li class="method public "><a href="#method_activate" title="activate() :: Hook into register_activation_hook action"><span class="description">Hook into register_activation_hook action</span><pre>activate()</pre></a></li>
 <li class="method public "><a href="#method_addLocalDomain" title="addLocalDomain() :: Adds a domain to the Local environment."><span class="description">Adds a domain to the Local environment.</span><pre>addLocalDomain()</pre></a></li>
+<li class="method public "><a href="#method_addPreProdDomain" title="addPreProdDomain() :: Adds a domain to the Production environment."><span class="description">Adds a domain to the Production environment.</span><pre>addPreProdDomain()</pre></a></li>
 <li class="method public "><a href="#method_addProdDomain" title="addProdDomain() :: Adds a domain to the Production environment."><span class="description">Adds a domain to the Production environment.</span><pre>addProdDomain()</pre></a></li>
 <li class="method public "><a href="#method_addStagingDomain" title="addStagingDomain() :: Adds a domain to the Staging environment."><span class="description">Adds a domain to the Staging environment.</span><pre>addStagingDomain()</pre></a></li>
 <li class="method public "><a href="#method_clean_array" title="clean_array() :: Clears out the passed array of blank quotes and null instances."><span class="description">Clears out the passed array of blank quotes and null instances.</span><pre>clean_array()</pre></a></li>
 <li class="method public "><a href="#method_deactivate" title="deactivate() :: Hook into register_deactivation_hook action"><span class="description">Hook into register_deactivation_hook action</span><pre>deactivate()</pre></a></li>
 <li class="method public "><a href="#method_getOptionsUrl" title="getOptionsUrl() :: Returns URL of WPE options page."><span class="description">Returns URL of WPE options page.</span><pre>getOptionsUrl()</pre></a></li>
-<li class="method public "><a href="#method_get_option" title="get_option() :: Retrieve the stored plugin option or the default if no user specified value is defined"><span class="description">Retrieve the stored plugin option or the default if no user specified value is defined</span><pre>get_option()</pre></a></li>
 <li class="method public "><a href="#method_instance" title="instance() :: Initialization function to hook into the WordPress init action"><span class="description">Initialization function to hook into the WordPress init action</span><pre>instance()</pre></a></li>
 <li class="method public "><a href="#method_isLocal" title="isLocal() :: Whether or not the server is a local development environment."><span class="description">Whether or not the server is a local development environment.</span><pre>isLocal()</pre></a></li>
+<li class="method public "><a href="#method_isPreProd" title="isPreProd() :: Whether or not the server is in a pre-production environment."><span class="description">Whether or not the server is in a pre-production environment.</span><pre>isPreProd()</pre></a></li>
 <li class="method public "><a href="#method_isProd" title="isProd() :: Whether or not the server is in a production environment."><span class="description">Whether or not the server is in a production environment.</span><pre>isProd()</pre></a></li>
 <li class="method public "><a href="#method_isStaging" title="isStaging() :: Whether or not the server is in a staging environment."><span class="description">Whether or not the server is in a staging environment.</span><pre>isStaging()</pre></a></li>
+<li class="method public "><a href="#method_wp_admin_bar_menu" title="wp_admin_bar_menu() :: Add WPE status to Admin bar."><span class="description">Add WPE status to Admin bar.</span><pre>wp_admin_bar_menu()</pre></a></li>
 <li class="method public "><a href="#method_wp_admin_enqueue_scripts" title="wp_admin_enqueue_scripts() :: Admin - Enqueue JS file(s)."><span class="description">Admin - Enqueue JS file(s).</span><pre>wp_admin_enqueue_scripts()</pre></a></li>
 <li class="method public "><a href="#method_wp_admin_enqueue_styles" title="wp_admin_enqueue_styles() :: Admin - Enqueue CSS file(s)."><span class="description">Admin - Enqueue CSS file(s).</span><pre>wp_admin_enqueue_styles()</pre></a></li>
 <li class="method public "><a href="#method_wp_admin_menu" title="wp_admin_menu() :: Define the admin menu options for this plugin"><span class="description">Define the admin menu options for this plugin</span><pre>wp_admin_menu()</pre></a></li>
@@ -85,13 +88,13 @@
                     <ul>
 <li class="method private "><a href="#method__addDomain" title="_addDomain() :: Adds a domain to the specified environment."><span class="description">Adds a domain to the specified environment.</span><pre>_addDomain()</pre></a></li>
 <li class="method private "><a href="#method__add_hooks" title="_add_hooks() :: Adds hooks needed for working within the flow of Wordpress."><span class="description">Adds hooks needed for working within the flow of Wordpress.</span><pre>_add_hooks()</pre></a></li>
-<li class="method private "><a href="#method__admin_options_update" title="_admin_options_update() :: Process update page form submissions"><span class="description">Process update page form submissions</span><pre>_admin_options_update()</pre></a></li>
 <li class="method private "><a href="#method__get_error_code" title="_get_error_code() :: Returns a string based on the key passed. For generic errors only."><span class="description">Returns a string based on the key passed. For generic errors only.</span><pre>_get_error_code()</pre></a></li>
+<li class="method private "><a href="#method__is_domain_in_array" title="_is_domain_in_array() :: Checks whether a domain is already in the $env options."><span class="description">Checks whether a domain is already in the $env options.</span><pre>_is_domain_in_array()</pre></a></li>
 <li class="method private "><a href="#method__is_domain_valid" title="_is_domain_valid() :: Validates a domain."><span class="description">Validates a domain.</span><pre>_is_domain_valid()</pre></a></li>
 <li class="method private "><a href="#method__sanitize" title="_sanitize() :: Sanitize data"><span class="description">Sanitize data</span><pre>_sanitize()</pre></a></li>
 <li class="method private "><a href="#method__set_WPE_ENV" title="_set_WPE_ENV() :: Sets the constant WPE_ENV."><span class="description">Sets the constant WPE_ENV.</span><pre>_set_WPE_ENV()</pre></a></li>
-<li class="method private "><a href="#method_update_option" title="update_option() :: "><span class="description">update_option()
-        </span><pre>update_option()</pre></a></li>
+<li class="method private "><a href="#method__update_option" title="_update_option() :: Updates the options associated with the plugin."><span class="description">Updates the options associated with the plugin.</span><pre>_update_option()</pre></a></li>
+<li class="method private "><a href="#method__wp_admin_options_update" title="_wp_admin_options_update() :: Process update page form submissions"><span class="description">Process update page form submissions</span><pre>_wp_admin_options_update()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -126,6 +129,25 @@
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
+<a id="method__get_option"></a><div class="element clickable method public method__get_option" data-toggle="collapse" data-target=".method__get_option .collapse" title="public">
+<h2>Retrieve the stored plugin option or the default if no user specified value is defined</h2>
+<pre>_get_option(string $option_name) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>uses</th>
+<td><a href="get_option()"></a></td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$option_name</h4>
+<code>string</code><p>The name of the option you'd like to get.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code>Returns the option value or false(boolean) if the option is not found</div>
+</div></div>
+</div>
 <a id="method_activate"></a><div class="element clickable method public method_activate" data-toggle="collapse" data-target=".method_activate .collapse" title="public">
 <h2>Hook into register_activation_hook action</h2>
 <pre>activate() </pre>
@@ -135,6 +157,17 @@
 <a id="method_addLocalDomain"></a><div class="element clickable method public method_addLocalDomain" data-toggle="collapse" data-target=".method_addLocalDomain .collapse" title="public">
 <h2>Adds a domain to the Local environment.</h2>
 <pre>addLocalDomain(mixed $domain) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$domain</h4><p>string</p></div>
+</div></div>
+</div>
+<a id="method_addPreProdDomain"></a><div class="element clickable method public method_addPreProdDomain" data-toggle="collapse" data-target=".method_addPreProdDomain .collapse" title="public">
+<h2>Adds a domain to the Production environment.</h2>
+<pre>addPreProdDomain(mixed $domain) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -193,25 +226,6 @@
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description">return string</div></div></div>
 </div>
-<a id="method_get_option"></a><div class="element clickable method public method_get_option" data-toggle="collapse" data-target=".method_get_option .collapse" title="public">
-<h2>Retrieve the stored plugin option or the default if no user specified value is defined</h2>
-<pre>get_option(string $option_name) : mixed</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>uses</th>
-<td><a href="get_option()"></a></td>
-</tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$option_name</h4>
-<code>string</code><p>The name of the option you'd like to get.</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>mixed</code>Returns the option value or false(boolean) if the option is not found</div>
-</div></div>
-</div>
 <a id="method_instance"></a><div class="element clickable method public method_instance" data-toggle="collapse" data-target=".method_instance .collapse" title="public">
 <h2>Initialization function to hook into the WordPress init action</h2>
 <pre>instance() </pre>
@@ -222,6 +236,16 @@ etc. up for use.</div></div></div>
 <a id="method_isLocal"></a><div class="element clickable method public method_isLocal" data-toggle="collapse" data-target=".method_isLocal .collapse" title="public">
 <h2>Whether or not the server is a local development environment.</h2>
 <pre>isLocal() : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a id="method_isPreProd"></a><div class="element clickable method public method_isPreProd" data-toggle="collapse" data-target=".method_isPreProd .collapse" title="public">
+<h2>Whether or not the server is in a pre-production environment.</h2>
+<pre>isPreProd() : bool</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -247,6 +271,16 @@ etc. up for use.</div></div></div>
 <div class="long_description"></div>
 <h3>Returns</h3>
 <div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a id="method_wp_admin_bar_menu"></a><div class="element clickable method public method_wp_admin_bar_menu" data-toggle="collapse" data-target=".method_wp_admin_bar_menu .collapse" title="public">
+<h2>Add WPE status to Admin bar.</h2>
+<pre>wp_admin_bar_menu($wp_admin_bar) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$wp_admin_bar</h4></div>
 </div></div>
 </div>
 <a id="method_wp_admin_enqueue_scripts"></a><div class="element clickable method public method_wp_admin_enqueue_scripts" data-toggle="collapse" data-target=".method_wp_admin_enqueue_scripts .collapse" title="public">
@@ -367,20 +401,20 @@ when the plugin is active.</div>
 form processor.</div>
 <table class="table table-bordered"><tr>
 <th>uses</th>
-<td><a href="WP_Environments-&gt;_admin_options_update()"></a></td>
+<td><a href="WP_Environments-&gt;_wp_admin_options_update()"></a></td>
 </tr></table>
 </div></div>
 </div>
 <a id="method__addDomain"></a><div class="element clickable method private method__addDomain" data-toggle="collapse" data-target=".method__addDomain .collapse" title="private">
 <h2>Adds a domain to the specified environment.</h2>
-<pre>_addDomain(mixed $env, mixed $domain) </pre>
+<pre>_addDomain(mixed $env, $new_domains) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$env</h4><p>string WPE_LOCAL, WPE_STAGING, or WPE_PROD</p></div>
-<div class="subelement argument"><h4>$domain</h4></div>
+<h4>$env</h4><p>string WPE_LOCAL, WPE_STAGING, WPE_PREPROD, or WPE_PROD</p></div>
+<div class="subelement argument"><h4>$new_domains</h4></div>
 </div></div>
 </div>
 <a id="method__add_hooks"></a><div class="element clickable method private method__add_hooks" data-toggle="collapse" data-target=".method__add_hooks .collapse" title="private">
@@ -399,32 +433,6 @@ form processor.</div>
 </tr></table>
 </div></div>
 </div>
-<a id="method__admin_options_update"></a><div class="element clickable method private method__admin_options_update" data-toggle="collapse" data-target=".method__admin_options_update .collapse" title="private">
-<h2>Process update page form submissions</h2>
-<pre>_admin_options_update() </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered">
-<tr>
-<th>uses</th>
-<td><a href="WP_Environments::sanitize()"></a></td>
-</tr>
-<tr>
-<th>uses</th>
-<td><a href="wp_redirect()"></a></td>
-</tr>
-<tr>
-<th>uses</th>
-<td><a href="wp_verify_nonce()"></a></td>
-</tr>
-<tr>
-<th>todo</th>
-<td>Use regex to validate domain input.</td>
-</tr>
-</table>
-</div></div>
-</div>
 <a id="method__get_error_code"></a><div class="element clickable method private method__get_error_code" data-toggle="collapse" data-target=".method__get_error_code .collapse" title="private">
 <h2>Returns a string based on the key passed. For generic errors only.</h2>
 <pre>_get_error_code(string $key) : string</pre>
@@ -438,6 +446,24 @@ form processor.</div>
 </div>
 <h3>Returns</h3>
 <div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method__is_domain_in_array"></a><div class="element clickable method private method__is_domain_in_array" data-toggle="collapse" data-target=".method__is_domain_in_array .collapse" title="private">
+<h2>Checks whether a domain is already in the $env options.</h2>
+<pre>_is_domain_in_array(string $env, string $domain) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$env</h4>
+<code>string</code><p>Which environment to check.</p></div>
+<div class="subelement argument">
+<h4>$domain</h4>
+<code>string</code><p>Domain to check.</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>Whether or not the passed $domain is in the $env array.</div>
 </div></div>
 </div>
 <a id="method__is_domain_valid"></a><div class="element clickable method private method__is_domain_valid" data-toggle="collapse" data-target=".method__is_domain_valid .collapse" title="private">
@@ -492,16 +518,45 @@ form processor.</div>
 </table>
 </div></div>
 </div>
-<a id="method_update_option"></a><div class="element clickable method private method_update_option" data-toggle="collapse" data-target=".method_update_option .collapse" title="private">
-<h2>update_option()
-        </h2>
-<pre>update_option($option_name, $value) </pre>
+<a id="method__update_option"></a><div class="element clickable method private method__update_option" data-toggle="collapse" data-target=".method__update_option .collapse" title="private">
+<h2>Updates the options associated with the plugin.</h2>
+<pre>_update_option(string $option_name, \[type] $value) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
-<div class="subelement argument"><h4>$option_name</h4></div>
-<div class="subelement argument"><h4>$value</h4></div>
+<div class="subelement argument">
+<h4>$option_name</h4>
+<code>string</code><p>Name of option that will be saved.</p></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code><a href="%5Btype%5D.html">\[type]</a></code><p>Value of option that will be saved.</p></div>
+</div></div>
+</div>
+<a id="method__wp_admin_options_update"></a><div class="element clickable method private method__wp_admin_options_update" data-toggle="collapse" data-target=".method__wp_admin_options_update .collapse" title="private">
+<h2>Process update page form submissions</h2>
+<pre>_wp_admin_options_update() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>uses</th>
+<td><a href="WP_Environments::sanitize()"></a></td>
+</tr>
+<tr>
+<th>uses</th>
+<td><a href="wp_redirect()"></a></td>
+</tr>
+<tr>
+<th>uses</th>
+<td><a href="wp_verify_nonce()"></a></td>
+</tr>
+<tr>
+<th>todo</th>
+<td>Use regex to validate domain input.</td>
+</tr>
+</table>
 </div></div>
 </div>
 <h3>
@@ -511,7 +566,7 @@ form processor.</div>
 <pre>$defaults : array</pre>
 <div class="row collapse"><div class="detail-description">
 <h3>Default</h3>
-<div class="subelement argument"><code>array('local_domains' => array('localhost'), 'staging_domains' => array(), 'production_domains' => array())</code></div>
+<div class="subelement argument"><code>array('local_domains' => array('localhost'), 'staging_domains' => array(), 'pre_production_domains' => array(), 'production_domains' => array())</code></div>
 </div></div>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
@@ -554,7 +609,7 @@ form processor.</div>
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
 </a> and<br>
-            generated on 2014-01-15T15:55:01-06:00.<br></footer></div>
+            generated on 2014-02-05T14:03:08-06:00.<br></footer></div>
 </div>
 </body>
 </html>

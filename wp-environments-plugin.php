@@ -9,13 +9,13 @@ defined( 'ABSPATH' ) OR exit;
  * @global object $wpdb
  *
  * @author  Mike Minor
- * @version 0.0.4r4
+ * @version 0.0.5r5
  */
 /*
 Plugin Name: Environments
 Plugin URI: https://github.com/pixelbacon/wp-environment
 Description: Sets constants for local, staging, and production environments based on your input.
-Version: 0.0.4r4
+Version: 0.0.5r5
 Author: (Mike Minor)
 Author URI: http://www.pixelbacon.com
 
@@ -49,9 +49,10 @@ class WP_Environments {
 	 * @var array Holds default values that are saved in options.
 	 */
 	var $defaults = array(
-		'local_domains'      => array( 'localhost' ),
-		'staging_domains'    => array(),
-		'production_domains' => array()
+		'local_domains'          => array( 'localhost' ),
+		'staging_domains'        => array(),
+		'pre_production_domains' => array(),
+		'production_domains'     => array(),
 	);
 
 	/**
@@ -86,24 +87,30 @@ class WP_Environments {
 	 * @uses define
 	 */
 	private function _set_WPE_ENV() {
-		
+
 		if(defined( 'WPE_ENV' ))
 			return;
 
 		// Check for local/dev
-		if ( in_array( $_SERVER['HTTP_HOST'], $this->get_option( 'local_domains' ) ) ):
+		if ( in_array( $_SERVER['HTTP_HOST'], $this->_get_option( 'local_domains' ) ) ):
 			define( 'WPE_ENV', WPE_ENV_LOCAL );
 			return;
 		endif;
 
 		// Check staging
-		if ( in_array( $_SERVER['HTTP_HOST'], $this->get_option( 'staging_domains' ) ) ):
+		if ( in_array( $_SERVER['HTTP_HOST'], $this->_get_option( 'staging_domains' ) ) ):
 			define( 'WPE_ENV', WPE_ENV_STAGING );
 			return;
 		endif;
 
+		// Check pre production
+		if ( in_array( $_SERVER['HTTP_HOST'], $this->_get_option( 'pre_production_domains' ) ) ):
+			define( 'WPE_ENV', WPE_ENV_PREPROD );
+			return;
+		endif;
+
 		// Check production
-		if ( in_array( $_SERVER['HTTP_HOST'], $this->get_option( 'production_domains' ) ) ):
+		if ( in_array( $_SERVER['HTTP_HOST'], $this->_get_option( 'production_domains' ) ) ):
 			define( 'WPE_ENV', WPE_ENV_PROD );
 			return;
 		endif;
@@ -135,6 +142,17 @@ class WP_Environments {
 	}
 
 	/**
+	 * Whether or not the server is in a pre-production environment.
+	 * @return bool
+	 */
+	public function isPreProd() {
+		if( !defined( 'WPE_ENV' ) )
+			$this->_set_WPE_ENV();
+
+		return WPE_ENV === WPE_ENV_PREPROD;
+	}
+
+	/**
 	 * Whether or not the server is in a production environment.
 	 * @return bool
 	 */
@@ -162,20 +180,48 @@ class WP_Environments {
 
 
 	/**
+	 * Checks whether a domain is already in the $env options.
+	 * @param  string  $env    Which environment to check.
+	 * @param  string  $domain Domain to check.
+	 * @return boolean         Whether or not the passed $domain is in the $env array.
+	 */
+	private function _is_domain_in_array($env, &$domain){
+		$domains = $this->_get_option( $env );
+
+		if(empty($domains)):
+			return false;
+		endif;
+
+		return in_array($domains, trim($domain));
+	}
+
+
+	/**
 	 * Adds a domain to the specified environment.
 	 *
-	 * @param $env string WPE_LOCAL, WPE_STAGING, or WPE_PROD
+	 * @param $env string WPE_LOCAL, WPE_STAGING, WPE_PREPROD, or WPE_PROD
 	 * @param $domain
 	 */
-	private function _addDomain( $env, &$domain ) {
-		$domain  = trim( $domain );
-		$domains = $this->get_option( $env );
+	private function _addDomain( $env, &$new_domains ) {
+		$domains = $this->_get_option($env);
 
-		if ( in_array( $domain, $domains ) )
-			return;
+		// Passing single domain.
+		if(is_string($new_domains)):
+			if(!$this->_is_domain_in_array($env, $value) && !empty($new_domains)):
+				array_push($domains, trim($new_domains));
+			endif;
 
-		array_push( $domains, $domain );
-		$this->update_option( $env, $domains );
+		// Passing array of domains.
+		elseif (is_array($new_domains)):
+			foreach ($new_domains as $key => &$value) {
+				$value = trim($value);
+				if( !$this->_is_domain_in_array($env, $value) && !empty($value)):
+					array_push($domains, $value);
+				endif;
+			}
+		endif;
+
+		$this->update_option( $env, array_filter($domains) );
 	}
 
 	/**
@@ -194,6 +240,15 @@ class WP_Environments {
 	 */
 	public function addStagingDomain( $domain ) {
 		$this->_addDomain( 'staging_domains', $domain );
+	}
+
+	/**
+	 * Adds a domain to the Production environment.
+	 *
+	 * @param $domain string
+	 */
+	public function addPreProdDomain( $domain ) {
+		$this->_addDomain( 'pre_production_domains', $domain );
 	}
 
 	/**
@@ -270,7 +325,7 @@ class WP_Environments {
 	 * @uses get_option()
 	 * @return mixed Returns the option value or false(boolean) if the option is not found
 	 */
-	public function get_option( $option_name ) {
+	public function _get_option( $option_name ) {
 		// Load option values if they haven't been loaded already
 		if ( ! isset( $this->options ) || empty( $this->options ) ):
 			$this->options = get_option( $this->option_name, $this->defaults );
@@ -287,13 +342,20 @@ class WP_Environments {
 		return false;
 	}
 
-	private function update_option( $option_name, &$value ) {
+
+	/**
+	 * Updates the options associated with the plugin.
+	 * @param  string $option_name Name of option that will be saved.
+	 * @param  [type] $value       Value of option that will be saved.
+	 */
+	private function _update_option( $option_name, &$value ) {
 		if ( ! isset( $this->options ) || empty( $this->options ) ):
 			$this->options = get_option( $this->option_name, $this->defaults );
 		endif;
 
-		if ( is_string( $value ) )
+		if ( is_string( $value ) ):
 			$value = trim( $value );
+		endif;
 
 		$this->options[$option_name] = $this->_sanitize( $value );
 
@@ -331,6 +393,21 @@ class WP_Environments {
 //  WP - ADMIN
 //-----------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------
+
+	/**
+	 * Add WPE status to Admin bar.
+	 */
+	function wp_admin_bar_menu( $wp_admin_bar ){
+		$args = array(
+	        'id' => 'custom-node',
+	        'title' => 'Custom Node',
+	        'href' => '#',
+	        'meta' => array(
+	            'class' => 'custom-node-class'
+	        )
+	    );
+	    $wp_admin_bar->add_node( $args );
+	}
 
 	/**
 	 * Define the admin menu options for this plugin
@@ -438,7 +515,7 @@ class WP_Environments {
 	 *
 	 * @todo Use regex to validate domain input.
 	 */
-	private function _admin_options_update() {
+	private function _wp_admin_options_update() {
 		// Verify submission for processing using wp_nonce
 		if ( wp_verify_nonce( $_REQUEST['_wpnonce'], "{$this->namespace}-update-options" ) ) {
 			$data = array();
@@ -554,7 +631,7 @@ class WP_Environments {
 	 * This function will handling routing of form submissions to the appropriate
 	 * form processor.
 	 *
-	 * @uses WP_Environments->_admin_options_update()
+	 * @uses WP_Environments->_wp_admin_options_update()
 	 */
 	function wp_route() {
 		$uri      = $_SERVER['REQUEST_URI'];
@@ -570,7 +647,7 @@ class WP_Environments {
 			// Handle POST requests
 			if ( $is_post ) {
 				if ( wp_verify_nonce( $nonce, "{$this->namespace}-update-options" ) ) {
-					$this->_admin_options_update();
+					$this->_wp_admin_options_update();
 				}
 			} // Handle GET requests
 			else {
@@ -644,7 +721,7 @@ function WPE_isLocal() {
 /**
  * Adds domain to Local environment.
  *
- * @param $domain string
+ * @param $domain string|array
  */
 function WPE_addLocalDomain( $domain ) {
 	global $WPE;
@@ -663,11 +740,30 @@ function WPE_isStaging() {
 /**
  * Adds domain to Staging environment.
  *
- * @param $domain string
+ * @param $domain string|array
  */
 function WPE_addStagingDomain( $domain ) {
 	global $WPE;
 	$WPE->addStagingDomain( $domain );
+}
+
+/**
+ * Whether or not the server is in a pre-production environment.
+ * @return bool
+ */
+function WPE_isPreProd() {
+	global $WPE;
+	return $WPE->isPreProd();
+}
+
+/**
+ * Adds domain to Pre-Production environment.
+ *
+ * @param $domain string|array
+ */
+function WPE_addPreProdDomain( $domain ) {
+	global $WPE;
+	$WPE->addPreProdDomain( $domain );
 }
 
 /**
@@ -682,7 +778,7 @@ function WPE_isProd() {
 /**
  * Adds domain to Production environment.
  *
- * @param $domain string
+ * @param $domain string|array
  */
 function WPE_addProdDomain( $domain ) {
 	global $WPE;

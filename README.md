@@ -19,24 +19,45 @@ Once all plugins are loaded, before the theme is loaded, the following constants
 <pre>
 WPE_isLocal()
 WPE_isStaging()
+WPE_isPreProd()
 WPE_isProd()
-</pre>
-
-#### Adding Domains Progromatically
-<pre>
-WPE_addLocalDomain( string $domain )
-WPE_addStagingDomain( string $domain )
-WPE_addProdDomain( string $domain )
 </pre>
 
 #### Constants
 
 <pre>
-WPE_ENV_DEV 
-WPE_ENV_STAGING 
-WPE_ENV_PROD 
+WPE_ENV_DEV
+WPE_ENV_STAGING
+WPE_ENV_PREPROD
+WPE_ENV_PROD
 WPE_ENV
 </pre>
+
+#### Adding Domains Progromatically
+
+<pre>
+WPE_addLocalDomain( string|array $domain )
+WPE_addStagingDomain( string|array $domain )
+WPE_addPreProdDomain( string|array $domain )
+WPE_addProdDomain( string|array $domain )
+</pre>
+
+
+## Change Log
+
+- 0.0.5r5
+	- Arrays can now be used when adding domains.
+	- Added pre-production environment; running on a client's staging environment for example.
+	- Cleaned up code for displaying options.
+	- Added Prebaked Code section if the person would like to use this in <i>wp-config.php.</i>
+	- New docs.
+- 0.0.4r4
+	- New docs.
+
+
+## Road Map
+
+Currently there are no big plans for the plugin. It's a simple plugin... So... yea.
 
 ## Forking
 
